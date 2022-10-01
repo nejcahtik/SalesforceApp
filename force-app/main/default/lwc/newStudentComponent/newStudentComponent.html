@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Add New Student" icon-name="custom:custom14">
+      <div class="slds-m-around_medium">
+        <form>
+            <br><br>
+            <lightning-input label="*Name" for="studentName" onchange={nameChangedHandler}></lightning-input>
+            <lightning-input label="*Surname" for="studentSurname" onchange={surnameChangedHandler}></lightning-input>
+            <lightning-input label="Birthday" for="studentBirthday" type="date" onchange={birthdayChangedHandler}></lightning-input>
+            <lightning-input label="*EMSO" for="studentEmso" onchange={emsoChangedHandler}></lightning-input>
+            <label for="emsoCheckMethod">Check EMSO with: &nbsp;</label>
+            <select name="typeOfStudies" onchange={methodChangedHandler} id="emsoMethod">
+                <option value="Api Call">API Call</option>
+                <option value="Custom Method">Custom Method</option>
+            </select>
+            <p if:false={emsoInCorrectFormat} style="color:red">EMSO is not in correct format.</p>
+            <p if:false={emsoIsANumber} style="color:red;">EMSO should be a 13-digit number.</p>
+            <br><br>
+            
+            <lightning-input label="Gender" for="studentGender" onchange={genderChangedHandler}></lightning-input>
+            <lightning-input label="Address" for="studentAddress" onchange={addressChangedHandler}></lightning-input>
+            <br><br>
+            <label for="typeOfStudies">Type of study:</label>
+            <select name="typeOfStudies" onchange={typeChangedHandler} id="typeOfStudies">
+                <option value="Full time">Full-time</option>
+                <option value="Part time">Part-time</option>
+            </select>
+            <br><br>
+            <lightning-input if:true={payerVisible} type="checkbox" id="payer" onclick={payerChangedHandler} name="payer" value="Payer"></lightning-input>
+            <label if:true={payerVisible} for="payer">Payer</label>
+            <br><br>
+            <p>Fields marked with '*' are mandatory.</p>
+            <br>
+            <lightning-button if:true={buttonVisible} class="slds-m-left_x-small" label="Add New Student" variant="brand" 
+            onclick={createStudent}></lightning-button>   
+            <p if:true={successVisible} style="color:green;">Student saved successfully.</p>
+            <p if:true={errorVisible} style="color:red;">There was an unexpected error saving the student. Check if all the fields marked with '*' are filled.</p>
+        </form>
+      </div>
+    </lightning-card>
+</template>

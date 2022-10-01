@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Registered students" icon-name="custom:custom14">
+
+        <b>Subject: {subject}</b>
+        <br>
+        <b>Classroom: {examination}</b>
+        <br><br><br>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>EMSO</th>
+                <th>Study Type</th>
+                <th>Withdraw from this exam</th>
+            </tr>
+            <template for:each={students} for:item="student">
+                <tr key={a}>
+                    <td>{student.Name} </td>
+                    <td>{student.Surname__c}</td>
+                    <td>{student.EMSO__c}</td>
+                    <td>{student.StudyType__c}</td>
+                    <td><lightning-button onclick={examWithdrawal} value={student.Id} label="Withdraw from exam" title="Download action" icon-name="utility:delete" class="slds-m-left_x-small" ></lightning-button></td>
+                </tr>
+            </template >
+        </table>
+    </lightning-card>
+</template>
